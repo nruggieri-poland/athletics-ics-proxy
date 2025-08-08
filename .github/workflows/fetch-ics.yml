@@ -5,6 +5,9 @@ on:
     - cron: "1,31 0-23/1 * * *" # Every 90 minutes (01 past, 31 past each hour)
   workflow_dispatch: # allow manual run
 
+permissions:
+  contents: write
+
 jobs:
   fetch-ics:
     runs-on: ubuntu-latest
