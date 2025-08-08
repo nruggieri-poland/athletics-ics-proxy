@@ -1,0 +1,32 @@
+name: Fetch ICS File
+
+on:
+  schedule:
+    - cron: "1,31 0-23/1 * * *" # Every 90 minutes (01 past, 31 past each hour)
+  workflow_dispatch: # allow manual run
+
+jobs:
+  fetch-ics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Fetch latest ICS
+        run: npm run fetch-ics
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add schedule.ics
+          git commit -m "Update schedule.ics" || echo "No changes to commit"
+          git push
