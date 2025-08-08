@@ -2,8 +2,8 @@ name: Fetch ICS File
 
 on:
   schedule:
-    - cron: "0 8,11,14,17 * * *" # 8:00 AM, 11:00 AM, 2:00 PM, 5:00 PM
-    - cron: "30 9,12,15 * * *"   # 9:30 AM, 12:30 PM, 3:30 PM
+    - cron: "0 12,15,18,21 * * *" # 8:00 AM, 11:00 AM, 2:00 PM, 5:00 PM ET (EDT)
+    - cron: "30 13,16,19 * * *"   # 9:30 AM, 12:30 PM, 3:30 PM ET (EDT)
   workflow_dispatch: # allow manual run
 
 permissions:
